@@ -19,6 +19,8 @@ export const ListarUsuarios = (props) => {
 			.then((response) => {
 				setUsuarios(response.data);
 				setLoading(false);
+			}).catch(error => {
+					console.error(error);
 			});
 	}, [setUsuarios]);
 
@@ -39,7 +41,7 @@ export const ListarUsuarios = (props) => {
 					window.location.reload();
 				}).catch(error => {
 					console.error(error);
-				})
+				});
 		}
 	}
 
