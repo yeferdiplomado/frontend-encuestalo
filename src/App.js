@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "./App.css";
 
-//----------Componentes----------//
 import { Inicio } from "./componentes/inicio";
 import { Login } from "./componentes/login";
+import { Register } from "./componentes/register";
 import { ListarUsuarios } from "./componentes/usuarios";
 import { crearUsuario } from "./componentes/usuarios/crearUsuario";
 import { EditarUsuario } from "./componentes/usuarios/editarUsuario";
@@ -20,9 +20,7 @@ import { EditarPregunta } from "./componentes/preguntas/editarPreguntas";
 import { ListarRespuestas } from "./componentes/respuestas";
 import { crearRespuesta } from "./componentes/respuestas/crearRespuestas";
 import { EditarRespuesta } from "./componentes/respuestas/editarRespuestas";
-//----------Fin Componentes------//
 
-//----------Funciones------------//
 function App() {
 	const isUser = localStorage.getItem("token");
 	const [user, setUser] = useState(isUser || "");
@@ -30,7 +28,7 @@ function App() {
 	const cerrarSesion = () => {
 		localStorage.removeItem("token");
 		window.location.replace("/");
-		menu = (
+		nav = (
 			<>
 				<li className="nav-item">
 					<Link className="nav-link active" to="/login">
@@ -41,9 +39,9 @@ function App() {
 		);
 	};
 
-	let menu = "";
+	let nav = "";
 	if (user) {
-		menu = (
+		nav = (
 			<>
 				<li className="nav-item">
 					<Link className="nav-link" to="/usuarios">
@@ -78,7 +76,7 @@ function App() {
 			</>
 		);
 	} else {
-		menu = (
+		nav = (
 			<>
 				<li className="nav-item">
 					<Link className="nav-link active" to="/login">
@@ -112,7 +110,7 @@ function App() {
 										Inicio
 									</Link>
 								</li>
-								{menu}
+								{nav}
 							</ul>
 						</div>
 					</div>
@@ -134,6 +132,7 @@ function App() {
 					<Route exact path="/respuestas/crear" component={crearRespuesta}></Route>
 					<Route exact path="/respuestas/editar/:id" component={EditarRespuesta}></Route>
 					<Route exact path="/login" render={(props) => <Login {...props} setUser={setUser} />} />
+					<Route exact path="/register" component={Register}></Route>
 					<Route exact path="/" component={Inicio}></Route>
 				</Switch>
 			</div>
