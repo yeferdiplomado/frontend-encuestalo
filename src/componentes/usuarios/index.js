@@ -37,7 +37,9 @@ export const ListarUsuarios = (props) => {
 				})
 				.then((response) => {
 					window.location.reload();
-				});
+				}).catch(error => {
+					console.error(error);
+				})
 		}
 	}
 
