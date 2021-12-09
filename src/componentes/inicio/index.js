@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 
 export const Inicio = () => {
-	const user = localStorage.getItem("token");
 	return (
 		<div>
 			<div className="body-wrap">
